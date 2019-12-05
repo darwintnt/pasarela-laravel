@@ -14,10 +14,23 @@ return [
     |
      */
 
+    'currency_converter' => [
+        'base_uri' => env('CURRENCY_CONVERTER_BASE_URI'),
+        'api_key' => env('CURRENCY_CONVERTER_KEY'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+    ],
+
+    'mercadopago' => [
+        'class' => App\Services\MercadoPagoService::class,
+        'base_uri' => env('MERCADOPAGO_BASE_URI'),
+        'public_key' => env('MERCADOPAGO_PUBLIC_KEY'),
+        'access_token' => env('MERCADOPAGO_ACCESS_TOKEN'),
+        'base_currency' => 'cop'
     ],
 
     'paypal' => [
