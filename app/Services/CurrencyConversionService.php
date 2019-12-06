@@ -46,7 +46,7 @@ class CurrencyConversionService
         ]
       );
 
-      return $response;
+      return $response->{strtoupper($from.'_'.$to)};
 
     }
 

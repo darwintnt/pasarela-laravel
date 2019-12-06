@@ -40,7 +40,7 @@
     <div class="form-group col-md-6">
       <small for="cardNumber" class="form-text text-muted">Credit card number:</small>
       <input type="text" class="form-control" id="cardNumber" data-checkout="cardNumber" placeholder="Number Card"
-        onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false"
+        onselectstart="return false" onpaste="return true" onCopy="return false" onCut="return false"
         onDrag="return false" onDrop="return false" autocomplete=off />
     </div>
     <div class="form-group col-md-2">

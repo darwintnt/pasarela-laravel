@@ -48,19 +48,38 @@ class MercadoPagoService
 
     public function handlePayment(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            "value" => "required",
+            "currency" => "required",
+            "email" => "required|email",
+            "paymentMethodId" => "required",
+            "token" => "required",
+        ]);
 
-        $order = $this->createPayment($request->value, $request->currency, $request->paymentMethodId,
-            $request->token, $request->email);
+        // dd($request->all());
 
-        if($order->status === 'approved') {
+        $order = $this->createPayment(
+            $request->value,
+            $request->currency,
+            $request->paymentMethodId,
+            $request->token,
+            $request->email
+        );
 
-            $approve = $order->id;
-    
-            session()->put('approvalId', $approve);
-    
-            return redirect($approve->href);
+        if ($order->status === 'approved') {
+
+            $name = $order->payer->first_name;
+            $currency = strtoupper($order->currency_id);
+            $amount = number_format($order->transaction_amount, 0, ',', '.');
+
+            $originalAmount = $request->value;
+            $originalCurrency = strtoupper($request->currency);
+
+            return redirect('home')
+                ->withSuccess(['payment' => "Gracias!! {$name}, hemos recibido tu pago por {$originalAmount} {$originalCurrency} ({$amount} {$currency})"]);
         }
+
+        return redirect('home')->withErrors('No ha sido posible realizar el pago, intente nuevamente mas tarde');
 
     }
 
@@ -74,6 +93,7 @@ class MercadoPagoService
         return $this->makeRequest(
             'POST',
             '/v1/payments',
+            [],
             [
                 'binary_mode' => true,
                 'transaction_amount' => round($value * $this->resolveFactor($currency)),
@@ -85,7 +105,6 @@ class MercadoPagoService
                 'installments' => $installments,
                 'statement_descriptor' => config('app.name'),
             ],
-            [],
             [],
             $isJsonRequest = true
         );
