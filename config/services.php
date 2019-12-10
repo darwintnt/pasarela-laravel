@@ -19,6 +19,14 @@ return [
         'api_key' => env('CURRENCY_CONVERTER_KEY'),
     ],
 
+    'epayco' => [
+        'class' => App\Services\EPaycoService::class,
+        'base_uri' => env('EPAYCO_BASE_URI'),
+        'public_key' => env('EPAYCO_PUBLIC_KEY'),
+        'private_key' => env('EPAYCO_PRIVATE_KEY'),
+        'base_currency' => 'cop'
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -38,6 +46,16 @@ return [
         'base_uri' => env('PAYPAL_BASE_URI'),
         'client_id' => env('PAYPAL_CLIENT_ID'),
         'client_secret' => env('PAYPAL_CLIENT_SECRET'),
+    ],
+
+    'payu' => [
+        'class' => App\Services\PayUService::class,
+        'base_uri' => env('PAYU_BASE_URI'),
+        'api_login' => env('PAYU_API_LOGIN'),
+        'api_key' => env('PAYU_API_KEY'),
+        'public_key' => env('PAYU_PUBLIC_KEY'),
+        'merchant_id' => env('PAYU_MERCHANT_ID'),
+        'base_currency' => 'cop'
     ],
 
     'postmark' => [

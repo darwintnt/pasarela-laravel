@@ -9,33 +9,6 @@
 <div class="mt-3">
   <label>Ingrese la información del medio de pago</label>
 
-  {{-- <fieldset>
-        <ul>
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-            </li>
-            <li>
-               <label for="installments">Installments:</label>
-               <select id="installments" class="form-control" name="installments"></select>
-          </li>
-        </ul>
-        <input type="hidden" name="amount" id="amount"/>
-        <input type="hidden" name="paymentMethodId" />
-    </fieldset> --}}
-
   <div class="form-row">
     <div class="form-group col-md-6">
       <small for="cardNumber" class="form-text text-muted">Credit card number:</small>
